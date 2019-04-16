@@ -1,0 +1,35 @@
+server:
+  port: 8000
+spring:
+  application:
+    # \u6307\u5B9A\u6CE8\u518C\u5230eureka server\u4E0A\u7684\u670D\u52A1\u540D\u79F0
+    name: microservice-provider-user
+  jpa:
+    # \u8BA9hibernate\u6253\u5370\u6267\u884C\u7684SQL
+    show-sql: true
+logging:
+  level:
+    root: INFO
+    # \u914D\u7F6E\u65E5\u5FD7\u7EA7\u522B\uFF0C\u8BA9hibernate\u6253\u5370\u51FA\u6267\u884C\u7684SQL\u53C2\u6570
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+management:
+  endpoints:
+    web:
+      exposure:
+        # \u5F00\u653E\u6240\u6709\u76D1\u63A7\u7AEF\u70B9
+        include: '*'
+  endpoint:
+    health:
+      # \u662F\u5426\u5C55\u793A\u5065\u5EB7\u68C0\u67E5\u8BE6\u60C5
+      show-details: always
+
+eureka:
+  client:
+    service-url:
+      # \u6307\u5B9Aeureka server\u901A\u4FE1\u5730\u5740\uFF0C\u6CE8\u610F/eureka/\u5C0F\u5C3E\u5DF4\u4E0D\u80FD\u5C11
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    # \u662F\u5426\u6CE8\u518CIP\u5230eureka server\uFF0C\u5982\u4E0D\u6307\u5B9A\u6216\u8BBE\u4E3Afalse\uFF0C\u90A3\u5C31\u4F1A\u6CE8\u518C\u4E3B\u673A\u540D\u5230eureka server
+    prefer-ip-address: true
